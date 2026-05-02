@@ -57,7 +57,7 @@ export class VRFProvider implements IVRFProvider {
 
   // Utility to generate a keypair for testing/setup
   static generateKeyPair() {
-    const privKey = secp256k1.utils.randomPrivateKey();
+    const privKey = secp256k1.utils.randomSecretKey();
     const pubKey = secp256k1.getPublicKey(privKey, true); // compressed
     return {
       secretKey: `0x${bytesToHex(privKey)}`,

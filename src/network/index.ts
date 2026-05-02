@@ -5,6 +5,8 @@ import { yamux } from '@chainsafe/libp2p-yamux';
 import { gossipsub } from '@libp2p/gossipsub';
 import { mdns } from '@libp2p/mdns';
 import { identify } from '@libp2p/identify';
+import { multiaddr } from '@multiformats/multiaddr';
+import { peerIdFromString } from '@libp2p/peer-id';
 import { logger } from '../utils/logger.js';
 import { Tx, Batch, MempoolDigest } from '../types.js';
 
@@ -21,12 +23,12 @@ export class NetworkNode {
   async start() {
     this.node = await createLibp2p({
       addresses: {
-        listen: [`/ip4/0.0.0.0/tcp/${this.listenPort}`]
+        listen: [`/ip4/0.0.0.0/tcp/${process.env.P2P_PORT || this.listenPort}`]
       },
       transports: [
         tcp()
       ],
-      connectionEncryption: [
+      connectionEncrypters: [
         noise()
       ],
       streamMuxers: [
@@ -46,8 +48,16 @@ export class NetworkNode {
       }
     });
 
-    this.node.addEventListener('peer:discovery', (evt) => {
+    this.node.addEventListener('peer:discovery', async (evt) => {
       logger.debug(`Found peer: ${evt.detail.id.toString()}`);
+      try {
+        if (evt.detail.multiaddrs && evt.detail.multiaddrs.length > 0) {
+          await this.node.dial(evt.detail.multiaddrs[0]);
+          logger.info(`Dialed discovered peer: ${evt.detail.multiaddrs[0].toString()}`);
+        }
+      } catch (e: any) {
+        // Ignore errors if already connected or failed to dial
+      }
     });
 
     this.node.addEventListener('peer:connect', (evt) => {
@@ -65,6 +75,29 @@ export class NetworkNode {
     listenAddrs.forEach((addr) => {
       logger.info(addr.toString());
     });
+
+    if (process.env.BOOTSTRAP_NODES) {
+      const addrs = process.env.BOOTSTRAP_NODES.split(',');
+      for (let addr of addrs) {
+        addr = addr.trim();
+        if (!addr) continue;
+        try {
+          const ma = multiaddr(addr);
+          const parts = addr.split('/p2p/');
+          if (parts.length < 2) throw new Error("No peer ID found in multiaddr");
+          
+          const peerIdStr = parts[1];
+          const peerId = peerIdFromString(peerIdStr);
+          await this.node.peerStore.save(peerId, { multiaddrs: [ma] });
+          await this.node.dial(peerId);
+          logger.info(`Explicitly dialed bootstrap node: ${addr}`);
+        } catch(e: any) {
+          logger.error(`Failed to dial bootstrap node ${addr}: ${e.message}`);
+        }
+      }
+    }
+
+
 
     // Subscribe to topics
     this.node.services.pubsub.subscribe(TOPIC_TX);

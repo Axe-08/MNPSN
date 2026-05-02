@@ -7,6 +7,7 @@ export class SyncManager implements ISyncManager {
   private receivedDigests: Map<number, Map<string, MempoolDigest>> = new Map();
   
   constructor(
+    private readonly nodeId: string,
     private networkNode: { publishMempoolDigest: (d: MempoolDigest) => Promise<void> }
   ) {}
 
@@ -16,7 +17,7 @@ export class SyncManager implements ISyncManager {
     
     const digestObj: MempoolDigest = {
       slot,
-      nodeId: process.env.NODE_ID || 'unknown',
+      nodeId: this.nodeId,
       digest: digestHash,
       hashes: sortedHashes
     };

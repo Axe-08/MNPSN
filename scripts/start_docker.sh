@@ -1,0 +1,35 @@
+#!/bin/bash
+
+echo "========================================="
+echo " Starting MNPSN Docker Compose Network"
+echo "========================================="
+
+# Shared Genesis Timestamp ensures perfectly synchronized slot boundaries
+export GENESIS_TIMESTAMP=$(date +%s000)
+
+# Secret keys matching the public keys in nodes.json
+export VRF_SECRET_KEY_1="0xf2ea907f06885c6508daa290255500278d6db4aed208eaeaf3a552067e2401df"
+export VRF_SECRET_KEY_2="0xdd425607f31fcd6311d430b5521a21864e264452251796403e9e8df0d672d9c3"
+export VRF_SECRET_KEY_3="0xda247bd488e6a5f39e1f76f631f86a124fbaa5614ae5ff6e1212bbedd64e4b1c"
+
+# Rebuild and start the containers
+docker-compose up --build -d
+
+echo "Nodes started! Waiting 10 seconds for mDNS discovery and mesh connection..."
+sleep 10
+
+echo "========================================="
+echo " Injecting Test Transactions to Node 1"
+echo "========================================="
+curl -s --noproxy "*" -X POST http://127.0.0.1:8080/tx \
+  -H "Content-Type: application/json" \
+  -d '{"sender": "0xAlice", "payload": "0x1234"}'
+echo
+curl -s --noproxy "*" -X POST http://127.0.0.1:8080/tx \
+  -H "Content-Type: application/json" \
+  -d '{"sender": "0xBob", "payload": "0x5678"}'
+echo
+echo "========================================="
+
+echo "Transactions injected! Tailing Node 1 logs (Press Ctrl+C to stop)..."
+docker logs -f mnpsn-node1

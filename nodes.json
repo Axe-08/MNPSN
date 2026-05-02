@@ -2,15 +2,15 @@
   "nodes": [
     {
       "nodeId": "node-1",
-      "vrfPublicKey": "0x028c1fc4fba1a16c3b6dd74c82823a078027732a30bbff0b503ec41dd61eb8466b"
+      "vrfPublicKey": "0x030f587c0a13eba1ab0d122f595dff7d33b25902888ce09c69077a88e7235afb14"
     },
     {
       "nodeId": "node-2",
-      "vrfPublicKey": "0x034b123d21b73e589ba5b6f3c1d911a3e6de17cc4142f9b88e146eb4a04fc921ed"
+      "vrfPublicKey": "0x02932f248f2f39e116e546f60809fbd5d0a60d578460ff943f1d8c0c107ec103ee"
     },
     {
       "nodeId": "node-3",
-      "vrfPublicKey": "0x027b40974fc4d1e089201f9de58f1f9e9cf2ef81cb96263884e6f6630f9d924194"
+      "vrfPublicKey": "0x039642ca0c7fae46fb98df06189ac1e0c1072e83d25397d4c779603626826ad3ef"
     }
   ]
 }

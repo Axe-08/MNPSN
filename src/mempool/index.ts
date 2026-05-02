@@ -7,12 +7,14 @@ export class Mempool implements IMempool {
 
   constructor(
     private readonly baseDelta: number = 5000,
-    private readonly epsilon: number = 1000
+    private readonly epsilon: number = 1000,
+    private readonly genesisTimestamp: number = Date.now()
   ) {}
 
   public assignTransactionToSlot(arrivalTime: number): number {
-    const currentSlot = Math.floor(arrivalTime / this.baseDelta);
-    const slotStartTime = currentSlot * this.baseDelta;
+    const elapsed = arrivalTime - this.genesisTimestamp;
+    const currentSlot = Math.max(0, Math.floor(elapsed / this.baseDelta));
+    const slotStartTime = this.genesisTimestamp + (currentSlot * this.baseDelta);
     const cutoffTime = slotStartTime + this.baseDelta - this.epsilon;
 
     if (arrivalTime <= cutoffTime) {
