@@ -1,0 +1,32 @@
+{
+  "name": "mnpsn",
+  "version": "1.0.0",
+  "description": "Multi-Node Probabilistic Sequencer Network",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "dependencies": {
+    "@chainsafe/libp2p-noise": "latest",
+    "@chainsafe/libp2p-yamux": "latest",
+    "@libp2p/gossipsub": "latest",
+    "@libp2p/identify": "latest",
+    "@libp2p/mdns": "latest",
+    "@libp2p/tcp": "latest",
+    "@libp2p/websockets": "latest",
+    "@noble/curves": "latest",
+    "fast-json-stable-stringify": "latest",
+    "libp2p": "latest",
+    "pino": "latest",
+    "pino-pretty": "latest",
+    "viem": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

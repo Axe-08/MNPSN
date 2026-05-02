@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {
+      "nodeId": "node-1",
+      "vrfPublicKey": "0x028c1fc4fba1a16c3b6dd74c82823a078027732a30bbff0b503ec41dd61eb8466b"
+    },
+    {
+      "nodeId": "node-2",
+      "vrfPublicKey": "0x034b123d21b73e589ba5b6f3c1d911a3e6de17cc4142f9b88e146eb4a04fc921ed"
+    },
+    {
+      "nodeId": "node-3",
+      "vrfPublicKey": "0x027b40974fc4d1e089201f9de58f1f9e9cf2ef81cb96263884e6f6630f9d924194"
+    }
+  ]
+}
