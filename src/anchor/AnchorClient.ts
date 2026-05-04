@@ -16,8 +16,6 @@ export class AnchorClient {
   private publicClient;
   private account;
 
-  private noncePromise: Promise<number> | null = null;
-
   constructor(
     private contractAddress: `0x${string}`,
     deployerPrivateKey: `0x${string}`,
@@ -37,18 +35,11 @@ export class AnchorClient {
 
   async submitBatch(slot: number, root: `0x${string}`): Promise<string> {
     try {
-      if (!this.noncePromise) {
-        this.noncePromise = this.publicClient.getTransactionCount({ address: this.account.address });
-      }
-      const nonce = await this.noncePromise;
-      this.noncePromise = Promise.resolve(nonce + 1);
-
       const hash = await this.walletClient.writeContract({
         address: this.contractAddress,
         abi: ANCHOR_ABI,
         functionName: 'submitBatch',
         args: [BigInt(slot), root],
-        nonce,
       });
       logger.info(`Submitted batch for slot ${slot} to L1. Tx: ${hash}`);
       const receipt = await this.publicClient.waitForTransactionReceipt({ hash });
