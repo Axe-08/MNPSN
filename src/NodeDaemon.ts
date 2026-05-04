@@ -220,20 +220,11 @@ export class NodeDaemon {
     await this.network.start();
     this.setupNetworkHandlers();
 
-    // Resume from last anchored slot on L1
-    if (this.anchorClient) {
-      try {
-        const lastSlot = await this.anchorClient.getLastAnchoredSlot();
-        if (lastSlot >= 0) {
-          const resumeSlot = lastSlot + 1;
-          logger.info(`[${this.nodeId}] L1 reports last anchored slot: ${lastSlot}. Resuming from slot ${resumeSlot}`);
-          this.slotManager.setStartSlot(resumeSlot);
-        } else {
-          logger.info(`[${this.nodeId}] No slots anchored on L1 yet, starting from slot 0`);
-        }
-      } catch (e: any) {
-        logger.warn(`[${this.nodeId}] Could not query L1 for resume slot: ${e.message}. Starting from slot 0`);
-      }
+    // Resume from a specific slot (set via RESUME_SLOT env var)
+    const resumeSlot = parseInt(process.env.RESUME_SLOT || '0');
+    if (resumeSlot > 0) {
+      logger.info(`[${this.nodeId}] Resuming from slot ${resumeSlot} (RESUME_SLOT env)`);
+      this.slotManager.setStartSlot(resumeSlot);
     }
 
     this.slotManager.start();

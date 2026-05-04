@@ -56,7 +56,7 @@ export class AnchorClient {
       return hash;
     } catch (e: any) {
       if (e.message?.includes('already anchored')) {
-        logger.debug(`Slot ${slot} already anchored on L1, skipping`);
+        logger.warn(`Slot ${slot} already anchored on L1, skipping`);
         return '';
       }
       logger.error(`L1 submit failed for slot ${slot}: ${e.message}`);
@@ -73,36 +73,4 @@ export class AnchorClient {
     }) as string;
   }
 
-  async getLastAnchoredSlot(): Promise<number> {
-    const ZERO = '0x0000000000000000000000000000000000000000000000000000000000000000';
-    
-    // First, find an upper bound by exponentially probing
-    let upper = 1;
-    while (true) {
-      const root = await this.getBatchRoot(upper);
-      if (root === ZERO) break;
-      upper *= 2;
-      if (upper > 1_000_000) break; // safety cap
-    }
-
-    // Binary search between upper/2 and upper
-    let low = Math.floor(upper / 2);
-    let high = upper;
-    
-    while (low < high) {
-      const mid = Math.floor((low + high + 1) / 2);
-      const root = await this.getBatchRoot(mid);
-      if (root !== ZERO) {
-        low = mid;
-      } else {
-        high = mid - 1;
-      }
-    }
-
-    // Verify slot 0
-    const root0 = await this.getBatchRoot(0);
-    if (root0 === ZERO && low === 0) return -1; // nothing anchored
-
-    return low;
-  }
 }
