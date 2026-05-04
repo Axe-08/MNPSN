@@ -14,7 +14,7 @@ export class SlotManager extends EventEmitter implements ISlotManager {
   constructor(
     private readonly baseDelta: number = 5000,
     private readonly epsilon: number = 1000,
-    private readonly genesisTimestamp: number = Date.now()
+    private genesisTimestamp: number = Date.now()
   ) {
     super();
     this.effectiveDelta = baseDelta;
@@ -60,7 +60,9 @@ export class SlotManager extends EventEmitter implements ISlotManager {
   setStartSlot(slot: number) {
     this.currentSlot = slot;
     this.currentPhase = "COLLECT";
-    logger.info(`SlotManager starting from slot ${slot}`);
+    // Shift genesis so this slot starts now
+    this.genesisTimestamp = Date.now() - (slot * this.baseDelta);
+    logger.info(`SlotManager starting from slot ${slot} (genesis adjusted)`);
   }
 
   start(): void {
