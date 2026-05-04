@@ -57,6 +57,12 @@ export class SlotManager extends EventEmitter implements ISlotManager {
     };
   }
 
+  setStartSlot(slot: number) {
+    this.currentSlot = slot;
+    this.currentPhase = "COLLECT";
+    logger.info(`SlotManager starting from slot ${slot}`);
+  }
+
   start(): void {
     if (this.running) return;
     this.running = true;
