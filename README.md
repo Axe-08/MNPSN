@@ -1,4 +1,4 @@
-# MNPSSN: Multi-Node P2P Sequencer Simulation Network
+# MNPSN: Multi-Node Probabilistic Sequencing Network
 
 A lightweight, local, multi-node simulation of a Threshold-based Batch Finalization Consensus Network using `libp2p` and `GossipSub`.
 
