@@ -4,6 +4,14 @@ echo "========================================="
 echo " Starting MNPSN Docker Compose Network"
 echo "========================================="
 
+# Load .env if it exists (contains ANCHOR_CONTRACT_ADDRESS, DEPLOYER_PRIVATE_KEY, SEPOLIA_RPC_URL)
+if [ -f .env ]; then
+  set -a
+  source .env
+  set +a
+  echo "Loaded .env file"
+fi
+
 # Shared Genesis Timestamp ensures perfectly synchronized slot boundaries
 export GENESIS_TIMESTAMP=$(date +%s000)
 
