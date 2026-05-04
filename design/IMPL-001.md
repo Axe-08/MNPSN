@@ -4,7 +4,7 @@
 
 * **Language**: Node.js (ESM, Node 20+)
 * **Networking**: `@libp2p/pubsub` or equivalent p2p pubsub module for gossip communication
-* **VRF**: ECVRF-P256-SHA256 from `@noble/curves` (audited, pure JS)
+* **VRF**: Deterministic ECDSA (RFC6979) over `secp256k1` from `@noble/curves`
 * **Crypto/Hashing**: standard `keccak256` from `viem` or `ethers` for cross-platform matching
 * **State Management**: In-memory data structures, indexed maps, and structured caches
 

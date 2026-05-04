@@ -96,7 +96,7 @@ $$\text{VRF.verify}(\text{pk}_p, \text{seed}_t, \text{vrf\_output}_p, \text{vrf\
 where $\text{pk}_p$ is the proposer's public VRF key, loaded from the static `nodes.json` configuration.
 
 ### Library
-Use ECVRF-P256-SHA256 from `@noble/curves` (audited, pure JS).
+Use deterministic ECDSA (RFC6979) over `secp256k1` from `@noble/curves` as a pseudo-VRF for the MVP.
 
 ---
 

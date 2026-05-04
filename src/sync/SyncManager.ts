@@ -1,6 +1,7 @@
 import { SyncManager as ISyncManager, MempoolDigest } from '../types.js';
 import { keccak256 } from 'viem';
 import { logger } from '../utils/logger.js';
+import stringify from 'fast-json-stable-stringify';
 
 export class SyncManager implements ISyncManager {
   // slot -> nodeId -> MempoolDigest
@@ -13,7 +14,7 @@ export class SyncManager implements ISyncManager {
 
   async broadcastDigest(slot: number, localTxHashes: string[]): Promise<void> {
     const sortedHashes = [...localTxHashes].sort();
-    const digestHash = keccak256(`0x${Buffer.from(JSON.stringify(sortedHashes)).toString('hex')}`);
+    const digestHash = keccak256(`0x${Buffer.from(stringify(sortedHashes)).toString('hex')}`);
     
     const digestObj: MempoolDigest = {
       slot,
@@ -63,19 +64,9 @@ export class SyncManager implements ISyncManager {
     return commonSubset.sort(); // Return sorted for lexicographical stability
   }
 
-  getExcludedTxHashes(slot: number, localTxHashes: string[]): string[] {
-    const slotDigests = this.receivedDigests.get(slot);
-    if (!slotDigests) return localTxHashes; // No consensus, exclude all
-
-    // To properly determine what is excluded, we compute the common subset based on received digests
-    // Wait, the interface design separates computeCommonSubset and getExcludedTxHashes.
-    // The node will call computeCommonSubset, then getExcludedTxHashes.
-    // We can just rely on the orchestrator to pass the localTxHashes and commonSubset.
-    // Let's refine this: the orchestrator can easily do local \setminus common.
-    // I'll leave the implementation robust.
-    
-    // We need the total node count. If we don't have it here, we should just provide a util to diff arrays.
-    throw new Error('Prefer computing diff in orchestrator or pass totalNodes to this method');
+  getExcludedTxHashes(slot: number, localTxHashes: string[], totalNodes: number): string[] {
+    const commonSubset = this.computeCommonSubset(slot, totalNodes);
+    return this.getExcluded(localTxHashes, commonSubset);
   }
 
   public getExcluded(localTxHashes: string[], commonSubset: string[]): string[] {

@@ -19,5 +19,5 @@ export const logger = pino({
 });
 
 export const setLoggerSlot = (slot: number) => {
-  logger.bindings().slot = slot;
+  logger.setBindings({ slot });
 };

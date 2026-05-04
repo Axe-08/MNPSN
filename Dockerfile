@@ -11,6 +11,8 @@ RUN npm install
 # Copy the rest of the application
 COPY . .
 
+RUN npm run build
+
 # Expose libp2p listening port and RPC port
 EXPOSE 40001
 EXPOSE 8080

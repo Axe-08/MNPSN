@@ -63,7 +63,7 @@
 * **Objective**: Implement VRF proof generation, verification, and slot seed computation.
 * **Deliverables**:
   * Implementation of the `VRFProvider` interface matching `IMPL-001 §3`.
-  * ECVRF-P256-SHA256 via `@noble/curves`.
+  * Deterministic ECDSA (RFC6979) over `secp256k1` via `@noble/curves`.
   * Slot seed computation: $\text{seed}_t = H(\text{prev\_root} \| \text{slot\_id})$.
   * Integration with `nodes.json` for public key loading.
 * **Reference**: `PROT-001 §4`.

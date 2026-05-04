@@ -77,7 +77,7 @@ export interface SyncManager {
   broadcastDigest(slot: number, localTxHashes: string[]): void;
   receiveDigest(digest: MempoolDigest): void;
   computeCommonSubset(slot: number, totalNodes: number): string[];
-  getExcludedTxHashes(slot: number, localTxHashes: string[]): string[];
+  getExcludedTxHashes(slot: number, localTxHashes: string[], totalNodes: number): string[];
 }
 
 export interface OrderingEngine {

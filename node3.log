@@ -2,159 +2,124 @@
 > mnpsn@1.0.0 dev
 > tsx src/index.ts
 
-[2026-05-03 04:07:02.201 +0530] [32mINFO[39m: [36mLibp2p node started. Listening on addresses:[39m
+[2026-05-04 21:07:13.009 +0530] [32mINFO[39m: [36mLibp2p node started. Listening on addresses:[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.201 +0530] [32mINFO[39m: [36m/ip4/127.0.0.1/tcp/40003/p2p/12D3KooWLbPZcy6rMfxEqvhhGd6nWYfbU6XwKfMFYnHysckdh6yT[39m
+[2026-05-04 21:07:13.009 +0530] [32mINFO[39m: [36m/ip4/127.0.0.1/tcp/40003/p2p/12D3KooWQwP3rMnX8FG74hKahPH3JD4VtmJaeUpaBa4nUUpbnawF[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.201 +0530] [32mINFO[39m: [36m/ip4/100.90.180.92/tcp/40003/p2p/12D3KooWLbPZcy6rMfxEqvhhGd6nWYfbU6XwKfMFYnHysckdh6yT[39m
+[2026-05-04 21:07:13.009 +0530] [32mINFO[39m: [36m/ip4/100.90.180.92/tcp/40003/p2p/12D3KooWQwP3rMnX8FG74hKahPH3JD4VtmJaeUpaBa4nUUpbnawF[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.201 +0530] [32mINFO[39m: [36m/ip4/10.197.174.229/tcp/40003/p2p/12D3KooWLbPZcy6rMfxEqvhhGd6nWYfbU6XwKfMFYnHysckdh6yT[39m
+[2026-05-04 21:07:13.009 +0530] [32mINFO[39m: [36m/ip4/172.22.192.57/tcp/40003/p2p/12D3KooWQwP3rMnX8FG74hKahPH3JD4VtmJaeUpaBa4nUUpbnawF[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.201 +0530] [32mINFO[39m: [36m/ip4/172.18.0.1/tcp/40003/p2p/12D3KooWLbPZcy6rMfxEqvhhGd6nWYfbU6XwKfMFYnHysckdh6yT[39m
+[2026-05-04 21:07:13.009 +0530] [32mINFO[39m: [36m/ip4/172.18.0.1/tcp/40003/p2p/12D3KooWQwP3rMnX8FG74hKahPH3JD4VtmJaeUpaBa4nUUpbnawF[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.251 +0530] [32mINFO[39m: [36mConnected to peer: 12D3KooWNDw1ZfEMi7jFPXc3UH9YAGutVKkL5GCpHWvgp2KfyjW5[39m
+[2026-05-04 21:07:13.051 +0530] [32mINFO[39m: [36mConnected to peer: 12D3KooWJ2ZnC6iFbhEXxjYRQipcHgGxGQ8vtrv5n4FhoJwaNsHL[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.254 +0530] [32mINFO[39m: [36mDialed discovered peer: /ip4/127.0.0.1/tcp/40001[39m
+[2026-05-04 21:07:13.052 +0530] [32mINFO[39m: [36mDialed discovered peer: /ip4/127.0.0.1/tcp/40001[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.259 +0530] [32mINFO[39m: [36mExplicitly dialed bootstrap node: /ip4/127.0.0.1/tcp/40001/p2p/12D3KooWNDw1ZfEMi7jFPXc3UH9YAGutVKkL5GCpHWvgp2KfyjW5[39m
+[2026-05-04 21:07:13.058 +0530] [32mINFO[39m: [36mExplicitly dialed bootstrap node: /ip4/127.0.0.1/tcp/40001/p2p/12D3KooWJ2ZnC6iFbhEXxjYRQipcHgGxGQ8vtrv5n4FhoJwaNsHL[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.260 +0530] [32mINFO[39m: [36mSubscribed to GossipSub topics: /tx, /batch, /mempool-digest, /mempool-sync[39m
+[2026-05-04 21:07:13.058 +0530] [32mINFO[39m: [36mSubscribed to GossipSub topics: /tx, /batch, /mempool-digest, /mempool-sync[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.260 +0530] [32mINFO[39m: [36mSlotManager started[39m
+[2026-05-04 21:07:13.058 +0530] [32mINFO[39m: [36mSlotManager started[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.260 +0530] [32mINFO[39m: [36m[node-3] RPC Server listening on port 8082[39m
+[2026-05-04 21:07:13.059 +0530] [32mINFO[39m: [36m[node-3] RPC Server listening on port 8082[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.289 +0530] [32mINFO[39m: [36mConnected to peer: 12D3KooWNaDUQUAM6mhL2VhDf4kJSgoCv4HRSzrMPXxeMmtKL2Bb[39m
+[2026-05-04 21:07:13.064 +0530] [32mINFO[39m: [36mSlot 0 transitioned to FREEZE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:02.290 +0530] [32mINFO[39m: [36mDialed discovered peer: /ip4/10.197.174.229/tcp/40002[39m
+[2026-05-04 21:07:13.064 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:03.001 +0530] [32mINFO[39m: [36mSlot 0 transitioned to FREEZE[39m
+[2026-05-04 21:07:13.074 +0530] [32mINFO[39m: [36mSlot 0 transitioned to SYNC[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:03.001 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 0[39m
+[2026-05-04 21:07:13.074 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:03.002 +0530] [32mINFO[39m: [36mSlot 0 transitioned to SYNC[39m
+[2026-05-04 21:07:13.134 +0530] [32mINFO[39m: [36mConnected to peer: 12D3KooWQoYzEw8G8AH26z2S6LtGDQcH1XiafuNcgUPRNELrZgbe[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:03.002 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 0[39m
+[2026-05-04 21:07:13.135 +0530] [32mINFO[39m: [36mDialed discovered peer: /ip4/100.90.180.92/tcp/40002[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.002 +0530] [32mINFO[39m: [36mSlot 0 transitioned to PROPOSE[39m
+[2026-05-04 21:07:14.000 +0530] [32mINFO[39m: [36mSlot 0 transitioned to PROPOSE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.002 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 0[39m
+[2026-05-04 21:07:14.000 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.003 +0530] [32mINFO[39m: [36mComputed common subset for slot 0: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+[2026-05-04 21:07:14.000 +0530] [32mINFO[39m: [36mComputed common subset for slot 0: 0 txs (threshold: 2, total nodes: 3, digests received: 1)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.501 +0530] [32mINFO[39m: [36mSlot 0 transitioned to FINALIZE[39m
+[2026-05-04 21:07:14.000 +0530] [32mINFO[39m: [36mComputed common subset for slot 0: 0 txs (threshold: 2, total nodes: 3, digests received: 1)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 0[39m
+[2026-05-04 21:07:14.501 +0530] [32mINFO[39m: [36mSlot 0 transitioned to FINALIZE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.501 +0530] [32mINFO[39m: [36mComputed common subset for slot 0: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+[2026-05-04 21:07:14.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.506 +0530] [32mINFO[39m: [36m[node-3] Found 2/2 valid proposals for slot 0[39m
+[2026-05-04 21:07:14.501 +0530] [32mINFO[39m: [36mComputed common subset for slot 0: 0 txs (threshold: 2, total nodes: 3, digests received: 1)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:04.506 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 0: Proposer node-2, Root 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421, Txs: 0[39m
+[2026-05-04 21:07:14.509 +0530] [32mINFO[39m: [36m[node-3] Found 2/2 valid proposals for slot 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:05.501 +0530] [32mINFO[39m: [36mSlot 1 transitioned to COLLECT[39m
+[2026-05-04 21:07:14.509 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 0: Proposer node-2, Root 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421, Txs: 0[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:08.003 +0530] [32mINFO[39m: [36mSlot 1 transitioned to FREEZE[39m
+[2026-05-04 21:07:15.501 +0530] [32mINFO[39m: [36mSlot 1 transitioned to COLLECT[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:08.003 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 1[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:18.003 +0530] [32mINFO[39m: [36mSlot 1 transitioned to FREEZE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:08.003 +0530] [32mINFO[39m: [36mSlot 1 transitioned to SYNC[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:18.003 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 1[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:08.003 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 1[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:18.006 +0530] [32mINFO[39m: [36mSlot 1 transitioned to SYNC[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.002 +0530] [32mINFO[39m: [36mSlot 1 transitioned to PROPOSE[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:18.006 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 1[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.003 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 1[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.004 +0530] [32mINFO[39m: [36mSlot 1 transitioned to PROPOSE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.003 +0530] [32mINFO[39m: [36mComputed common subset for slot 1: 2 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.004 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 1[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.501 +0530] [32mINFO[39m: [36mSlot 1 transitioned to FINALIZE[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.005 +0530] [32mINFO[39m: [36mComputed common subset for slot 1: 2 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 1[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.005 +0530] [32mINFO[39m: [36mComputed common subset for slot 1: 2 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.501 +0530] [32mINFO[39m: [36mComputed common subset for slot 1: 2 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.501 +0530] [32mINFO[39m: [36mSlot 1 transitioned to FINALIZE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.506 +0530] [32mINFO[39m: [36m[node-3] Found 2/2 valid proposals for slot 1[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 1[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:09.506 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 1: Proposer node-1, Root 0x14a777f6e80c6ae156f2ba66161ab70782be1af51bf1cfff4b90d608dfb33413, Txs: 2[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.502 +0530] [32mINFO[39m: [36mComputed common subset for slot 1: 2 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:10.501 +0530] [32mINFO[39m: [36mSlot 2 transitioned to COLLECT[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.508 +0530] [32mINFO[39m: [36m[node-3] Found 2/2 valid proposals for slot 1[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:13.002 +0530] [32mINFO[39m: [36mSlot 2 transitioned to FREEZE[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:19.508 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 1: Proposer node-1, Root 0xd6c0faba16648e594bbd650a56940f83e32a599cbdfed87fe633e521e46bca1e, Txs: 2[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:13.002 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 2[39m
+    [35mslot[39m: 1
+[2026-05-04 21:07:20.502 +0530] [32mINFO[39m: [36mSlot 2 transitioned to COLLECT[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:13.002 +0530] [32mINFO[39m: [36mSlot 2 transitioned to SYNC[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:23.000 +0530] [32mINFO[39m: [36mSlot 2 transitioned to FREEZE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:13.002 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 2[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:23.000 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 2[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.005 +0530] [32mINFO[39m: [36mSlot 2 transitioned to PROPOSE[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:23.000 +0530] [32mINFO[39m: [36mSlot 2 transitioned to SYNC[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.005 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 2[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:23.000 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 2[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.005 +0530] [32mINFO[39m: [36mComputed common subset for slot 2: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:24.005 +0530] [32mINFO[39m: [36mSlot 2 transitioned to PROPOSE[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.501 +0530] [32mINFO[39m: [36mSlot 2 transitioned to FINALIZE[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:24.005 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 2[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 2[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:24.005 +0530] [32mINFO[39m: [36mComputed common subset for slot 2: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.501 +0530] [32mINFO[39m: [36mComputed common subset for slot 2: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
+    [35mslot[39m: 2
+[2026-05-04 21:07:24.005 +0530] [32mINFO[39m: [36mComputed common subset for slot 2: 0 txs (threshold: 2, total nodes: 3, digests received: 3)[39m
     [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.505 +0530] [32mINFO[39m: [36m[node-3] Found 1/2 valid proposals for slot 2[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:14.505 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 2: Proposer node-2, Root 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421, Txs: 0[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:15.501 +0530] [32mINFO[39m: [36mSlot 3 transitioned to COLLECT[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:18.003 +0530] [32mINFO[39m: [36mSlot 3 transitioned to FREEZE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:18.003 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 3[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:18.003 +0530] [32mINFO[39m: [36mSlot 3 transitioned to SYNC[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:18.003 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 3[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.002 +0530] [32mINFO[39m: [36mSlot 3 transitioned to PROPOSE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.002 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 3[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.002 +0530] [32mINFO[39m: [36mComputed common subset for slot 3: 0 txs (threshold: 2, total nodes: 3, digests received: 2)[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.501 +0530] [32mINFO[39m: [36mSlot 3 transitioned to FINALIZE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.502 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 3[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.502 +0530] [32mINFO[39m: [36mComputed common subset for slot 3: 0 txs (threshold: 2, total nodes: 3, digests received: 2)[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.504 +0530] [32mINFO[39m: [36m[node-3] Found 1/1 valid proposals for slot 3[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:19.504 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 3: Proposer node-2, Root 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421, Txs: 0[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:20.502 +0530] [32mINFO[39m: [36mSlot 4 transitioned to COLLECT[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:23.002 +0530] [32mINFO[39m: [36mSlot 4 transitioned to FREEZE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:23.002 +0530] [32mINFO[39m: [36m[node-3] FREEZE slot 4[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:23.002 +0530] [32mINFO[39m: [36mSlot 4 transitioned to SYNC[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:23.002 +0530] [32mINFO[39m: [36m[node-3] SYNC slot 4[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.003 +0530] [32mINFO[39m: [36mSlot 4 transitioned to PROPOSE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.003 +0530] [32mINFO[39m: [36m[node-3] PROPOSE slot 4[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.003 +0530] [32mINFO[39m: [36mComputed common subset for slot 4: 0 txs (threshold: 2, total nodes: 3, digests received: 2)[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.501 +0530] [32mINFO[39m: [36mSlot 4 transitioned to FINALIZE[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.501 +0530] [32mINFO[39m: [36m[node-3] FINALIZE slot 4[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.501 +0530] [32mINFO[39m: [36mComputed common subset for slot 4: 0 txs (threshold: 2, total nodes: 3, digests received: 2)[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.506 +0530] [32mINFO[39m: [36m[node-3] Found 1/1 valid proposals for slot 4[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:24.506 +0530] [32mINFO[39m: [36m[node-3] Winning batch for slot 4: Proposer node-2, Root 0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421, Txs: 0[39m
-    [35mnodeId[39m: "node-3"
-[2026-05-03 04:07:25.501 +0530] [32mINFO[39m: [36mSlot 5 transitioned to COLLECT[39m
-    [35mnodeId[39m: "node-3"
+    [35mslot[39m: 2
