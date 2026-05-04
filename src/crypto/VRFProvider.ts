@@ -17,7 +17,7 @@ export class VRFProvider implements IVRFProvider {
     // 3. Verifiable with PK
     const sig = secp256k1.sign(seedBytes, skBytes, { lowS: true });
     
-    const proofHex = sig.toHex();
+    const proofHex = bytesToHex(sig);
     // The output is the hash of the proof to ensure uniform distribution
     const outputHex = keccak256(`0x${proofHex}`);
     

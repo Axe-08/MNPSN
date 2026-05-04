@@ -42,7 +42,7 @@ export class NetworkNode {
       services: {
         identify: identify(),
         pubsub: gossipsub({
-          allowPublishToZeroPeers: true,
+          allowPublishToZeroTopicPeers: true,
           fallbackToFloodsub: true
         })
       }
@@ -100,10 +100,10 @@ export class NetworkNode {
 
 
     // Subscribe to topics
-    this.node.services.pubsub.subscribe(TOPIC_TX);
-    this.node.services.pubsub.subscribe(TOPIC_BATCH);
-    this.node.services.pubsub.subscribe(TOPIC_MEMPOOL_DIGEST);
-    this.node.services.pubsub.subscribe(TOPIC_MEMPOOL_SYNC);
+    (this.node.services.pubsub as any).subscribe(TOPIC_TX);
+    (this.node.services.pubsub as any).subscribe(TOPIC_BATCH);
+    (this.node.services.pubsub as any).subscribe(TOPIC_MEMPOOL_DIGEST);
+    (this.node.services.pubsub as any).subscribe(TOPIC_MEMPOOL_SYNC);
 
     logger.info(`Subscribed to GossipSub topics: ${TOPIC_TX}, ${TOPIC_BATCH}, ${TOPIC_MEMPOOL_DIGEST}, ${TOPIC_MEMPOOL_SYNC}`);
   }
@@ -117,7 +117,7 @@ export class NetworkNode {
   private async safePublish(topic: string, msgObj: any, desc: string) {
     try {
       const data = new TextEncoder().encode(JSON.stringify(msgObj));
-      await this.node.services.pubsub.publish(topic, data);
+      await (this.node.services.pubsub as any).publish(topic, data);
       logger.debug(`Published ${desc} to ${topic}`);
     } catch (e: any) {
       if (e.name === 'PublishError' || e.code === 'ERR_PUBLISH_NO_PEERS' || e.message.includes('NoPeers')) {
@@ -146,7 +146,7 @@ export class NetworkNode {
 
   // Subscribe to messages
   onMessage(topic: string, handler: (msg: any, sender: string) => void) {
-    this.node.services.pubsub.addEventListener('message', (evt) => {
+    (this.node.services.pubsub as any).addEventListener('message', (evt: any) => {
       if (evt.detail.topic === topic) {
         try {
           const strData = new TextDecoder().decode(evt.detail.data);

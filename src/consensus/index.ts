@@ -83,7 +83,7 @@ export class BatchBuilder {
   computeMerkleRoot(txs: Tx[]): string {
     if (txs.length === 0) return EMPTY_MERKLE_ROOT;
 
-    let hashes = txs.map(tx => keccak256(`0x${tx.hash.startsWith('0x') ? tx.hash.slice(2) : tx.hash}`));
+    let hashes: string[] = txs.map(tx => keccak256(`0x${tx.hash.startsWith('0x') ? tx.hash.slice(2) : tx.hash}`));
 
     while (hashes.length > 1) {
       const nextLevel: string[] = [];

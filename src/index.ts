@@ -58,7 +58,7 @@ async function main() {
 
   // IPC for simulation suite
   if (process.send) {
-    const addrs = daemon.network.node.getMultiaddrs().map(a => a.toString());
+    const addrs = daemon.network.node.getMultiaddrs().map((a: any) => a.toString());
     process.send({ type: 'READY', addrs });
     
     process.on('message', async (msg: any) => {
