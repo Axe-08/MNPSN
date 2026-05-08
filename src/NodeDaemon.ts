@@ -9,6 +9,7 @@ import {
 import { Mempool } from "./mempool/index.js";
 import { SlotManager, Phase } from "./core/SlotManager.js";
 import { SkipHandler } from "./core/SkipHandler.js";
+import { StateRootTracker } from "./core/StateRootTracker.js";
 import { VRFProvider } from "./crypto/VRFProvider.js";
 import { SyncManager } from "./sync/SyncManager.js";
 import {
@@ -42,6 +43,7 @@ export class NodeDaemon {
   public forkChoice: ForkChoice;
   public batchBuilder: BatchBuilder;
   public anchorClient?: AnchorClient;
+  public stateRootTracker: StateRootTracker;
 
   public batchHistory = new Map<number, Batch>();
   public receivedProposals = new Map<number, Batch[]>();
@@ -70,6 +72,7 @@ export class NodeDaemon {
     this.proposerEngine = new ProposerEngine();
     this.forkChoice = new ForkChoice(this.proposerEngine);
     this.batchBuilder = new BatchBuilder();
+    this.stateRootTracker = new StateRootTracker();
 
     this.setupStateMachine();
 
@@ -255,9 +258,12 @@ export class NodeDaemon {
             this.skipHandler.reset();
             this.slotManager.setEffectiveSlotDuration(this.baseDelta);
 
+            // Compute cumulative state root: chains all batch roots into a single commitment
+            const stateRoot = this.stateRootTracker.computeStateRoot(slot, winner.root);
+
             if (this.anchorClient && winner.proposer === this.nodeId) {
               this.anchorClient
-                .submitBatch(slot, winner.root as `0x${string}`)
+                .submitBatch(slot, stateRoot as `0x${string}`)
                 .catch((e) => logger.error(`Anchor failed: ${e.message}`));
             }
           } else {
@@ -268,12 +274,15 @@ export class NodeDaemon {
             this.batchHistory.set(slot, nullBatch);
             this.skipHandler.recordSkip(slot);
 
+            // Compute cumulative state root even for null batches (chains EMPTY_MERKLE_ROOT)
+            const stateRoot = this.stateRootTracker.computeStateRoot(slot, EMPTY_MERKLE_ROOT);
+
             if (
               this.anchorClient &&
               this.registry.nodes[0].nodeId === this.nodeId
             ) {
               this.anchorClient
-                .submitBatch(slot, EMPTY_MERKLE_ROOT as `0x${string}`)
+                .submitBatch(slot, stateRoot as `0x${string}`)
                 .catch((e) => logger.error(`Anchor failed: ${e.message}`));
             }
 
