@@ -184,6 +184,14 @@ export class NodeDaemon {
             orderedTxs,
           );
 
+          // Store own proposal locally — GossipSub does NOT echo messages back
+          // to the publisher, so without this ForkChoice only sees 2/3 proposals
+          // and different nodes pick different winners.
+          if (!this.receivedProposals.has(slot)) {
+            this.receivedProposals.set(slot, []);
+          }
+          this.receivedProposals.get(slot)!.push(proposal);
+
           await this.network.publishBatch(proposal);
         } else if (phase === "FINALIZE") {
           logger.info(`[${this.nodeId}] FINALIZE slot ${slot}`);

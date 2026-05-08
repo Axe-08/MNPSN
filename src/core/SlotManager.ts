@@ -68,7 +68,16 @@ export class SlotManager extends EventEmitter implements ISlotManager {
   start(): void {
     if (this.running) return;
     this.running = true;
-    logger.info('SlotManager started');
+
+    // Recalculate current slot from wall clock so all nodes start on the
+    // same slot regardless of when their readiness check completes.
+    const now = Date.now();
+    this.currentSlot = Math.max(0, Math.floor((now - this.genesisTimestamp) / this.baseDelta));
+    this.currentPhase = "COLLECT";
+    this.effectiveDelta = this.baseDelta;
+    setLoggerSlot(this.currentSlot);
+
+    logger.info(`SlotManager started at slot ${this.currentSlot} (now=${now}, genesis=${this.genesisTimestamp})`);
     this.scheduleNextTransition();
   }
 
