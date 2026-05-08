@@ -263,7 +263,7 @@ export class NodeDaemon {
 
             if (this.anchorClient && winner.proposer === this.nodeId) {
               this.anchorClient
-                .submitBatch(slot, stateRoot as `0x${string}`)
+                .submitBatch(slot, stateRoot as `0x${string}`, winner.txs.length)
                 .catch((e) => logger.error(`Anchor failed: ${e.message}`));
             }
           } else {
@@ -282,7 +282,7 @@ export class NodeDaemon {
               this.registry.nodes[0].nodeId === this.nodeId
             ) {
               this.anchorClient
-                .submitBatch(slot, stateRoot as `0x${string}`)
+                .submitBatch(slot, stateRoot as `0x${string}`, 0)
                 .catch((e) => logger.error(`Anchor failed: ${e.message}`));
             }
 

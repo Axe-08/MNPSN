@@ -4,11 +4,12 @@ import { privateKeyToAccount } from 'viem/accounts';
 import { logger } from '../utils/logger.js';
 
 const ANCHOR_ABI = parseAbi([
-  'function submitBatch(uint256 slot, bytes32 root) external',
+  'function submitBatch(uint256 slot, bytes32 stateRoot, uint256 txCount) external',
+  'function getStateRoot(uint256 slot) external view returns (bytes32)',
   'function getBatchRoot(uint256 slot) external view returns (bytes32)',
   'function batches(uint256 slot) external view returns (bytes32)',
-  'event BatchSubmitted(uint256 indexed slot, bytes32 root)',
-  'event SlotSkipped(uint256 indexed slot)',
+  'event BatchSubmitted(uint256 indexed slot, bytes32 stateRoot, uint256 txCount)',
+  'event SlotEmpty(uint256 indexed slot, bytes32 stateRoot)',
 ]);
 
 export class AnchorClient {
@@ -33,15 +34,15 @@ export class AnchorClient {
     });
   }
 
-  async submitBatch(slot: number, root: `0x${string}`): Promise<string> {
+  async submitBatch(slot: number, stateRoot: `0x${string}`, txCount: number = 0): Promise<string> {
     try {
       const hash = await this.walletClient.writeContract({
         address: this.contractAddress,
         abi: ANCHOR_ABI,
         functionName: 'submitBatch',
-        args: [BigInt(slot), root],
+        args: [BigInt(slot), stateRoot, BigInt(txCount)],
       });
-      logger.info(`Submitted batch for slot ${slot} to L1. Tx: ${hash}`);
+      logger.info(`Submitted batch for slot ${slot} to L1. Tx: ${hash} (txCount: ${txCount})`);
       const receipt = await this.publicClient.waitForTransactionReceipt({ hash });
       logger.info(`L1 tx confirmed in block ${receipt.blockNumber}`);
       return hash;
@@ -55,13 +56,17 @@ export class AnchorClient {
     }
   }
 
-  async getBatchRoot(slot: number): Promise<string> {
+  async getStateRoot(slot: number): Promise<string> {
     return await this.publicClient.readContract({
       address: this.contractAddress,
       abi: ANCHOR_ABI,
-      functionName: 'getBatchRoot',
+      functionName: 'getStateRoot',
       args: [BigInt(slot)],
     }) as string;
   }
 
+  /** @deprecated Use getStateRoot instead */
+  async getBatchRoot(slot: number): Promise<string> {
+    return this.getStateRoot(slot);
+  }
 }
