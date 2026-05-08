@@ -135,16 +135,16 @@ export class NodeDaemon {
         } else if (phase === "PROPOSE") {
           logger.info(`[${this.nodeId}] PROPOSE slot ${slot}`);
 
+          // Compute common subset once (avoids redundant call inside getExcludedTxHashes)
           const commonHashes = this.syncManager.computeCommonSubset(
             slot,
             totalNodes,
           );
           const localTxs = this.mempool.snapshot(slot);
           const localHashes = localTxs.map((tx) => tx.hash);
-          const excludedHashes = this.syncManager.getExcludedTxHashes(
-            slot,
+          const excludedHashes = this.syncManager.getExcluded(
             localHashes,
-            totalNodes,
+            commonHashes,
           );
 
           if (excludedHashes.length > 0) {
@@ -310,7 +310,7 @@ export class NodeDaemon {
       this.slotManager.setStartSlot(resumeSlot);
     }
 
-    this.slotManager.start();
+    // NOTE: slotManager.start() is called from index.ts AFTER peer readiness check
 
     if (this.rpcPort > 0) {
       this.rpcServer = http.createServer((req, res) => {

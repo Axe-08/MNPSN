@@ -49,14 +49,23 @@ export class NetworkNode {
     });
 
     this.node.addEventListener('peer:discovery', async (evt) => {
-      logger.debug(`Found peer: ${evt.detail.id.toString()}`);
+      const peerId = evt.detail.id.toString();
+      logger.info(`Discovered peer via mDNS: ${peerId}`);
       try {
         if (evt.detail.multiaddrs && evt.detail.multiaddrs.length > 0) {
+          const addr = evt.detail.multiaddrs[0];
+          logger.info(`Attempting to dial peer ${peerId} at ${addr.toString()}`);
           await this.node.dial(evt.detail.multiaddrs[0]);
-          logger.info(`Dialed discovered peer: ${evt.detail.multiaddrs[0].toString()}`);
+          logger.info(`Successfully dialed peer: ${peerId} at ${addr.toString()}`);
+        } else {
+          logger.warn(`Discovered peer ${peerId} but no multiaddrs available`);
         }
       } catch (e: any) {
-        // Ignore errors if already connected or failed to dial
+        if (e.message?.includes('already') || e.code === 'ERR_ALREADY_CONNECTED') {
+          logger.debug(`Already connected to ${peerId}`);
+        } else {
+          logger.warn(`Failed to dial discovered peer ${peerId}: ${e.message}`);
+        }
       }
     });
 
@@ -97,20 +106,54 @@ export class NetworkNode {
       }
     }
 
-
-
     // Subscribe to topics
     (this.node.services.pubsub as any).subscribe(TOPIC_TX);
     (this.node.services.pubsub as any).subscribe(TOPIC_BATCH);
     (this.node.services.pubsub as any).subscribe(TOPIC_MEMPOOL_DIGEST);
     (this.node.services.pubsub as any).subscribe(TOPIC_MEMPOOL_SYNC);
 
+    const ourPeerId = this.node.peerId.toString();
+    logger.info(`Our Peer ID: ${ourPeerId}`);
     logger.info(`Subscribed to GossipSub topics: ${TOPIC_TX}, ${TOPIC_BATCH}, ${TOPIC_MEMPOOL_DIGEST}, ${TOPIC_MEMPOOL_SYNC}`);
   }
 
   async stop() {
     await this.node.stop();
     logger.info('Libp2p node stopped.');
+  }
+
+  /**
+   * Returns the number of currently connected peers.
+   */
+  getConnectedPeerCount(): number {
+    return this.node.getPeers().length;
+  }
+
+  /**
+   * Returns the number of peers subscribed to a specific GossipSub topic.
+   */
+  getTopicPeerCount(topic: string): number {
+    try {
+      const subscribers = (this.node.services.pubsub as any).getSubscribers(topic);
+      return subscribers ? subscribers.length : 0;
+    } catch {
+      return 0;
+    }
+  }
+
+  /**
+   * Logs full mesh connectivity diagnostics.
+   */
+  logMeshStatus() {
+    const peers = this.node.getPeers();
+    logger.info(`=== Mesh Status ===`);
+    logger.info(`Connected peers: ${peers.length}`);
+    peers.forEach(p => logger.info(`  - ${p.toString()}`));
+    for (const topic of [TOPIC_TX, TOPIC_BATCH, TOPIC_MEMPOOL_DIGEST, TOPIC_MEMPOOL_SYNC]) {
+      const count = this.getTopicPeerCount(topic);
+      logger.info(`  Topic ${topic}: ${count} subscribers`);
+    }
+    logger.info(`===================`);
   }
 
   // Publishing methods
